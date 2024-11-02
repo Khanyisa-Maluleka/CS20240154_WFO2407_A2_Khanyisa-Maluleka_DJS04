@@ -9,4 +9,11 @@ class BookPreview extends HTMLElement {
         this.render();
         this.addClickListener();
     }
+
+    render() {
+        const bookId = this.getAttribute('book-id');
+        const title = this.getAttribute('title');
+        const author = this.getAttribute('author');
+        const image = this.getAttribute('image');
+    }
 }
