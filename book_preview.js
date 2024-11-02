@@ -30,3 +30,6 @@ class BookPreview extends HTMLElement {
         });
     }
 }
+
+// Register the web component
+customElements.define('book-preview', BookPreview);
