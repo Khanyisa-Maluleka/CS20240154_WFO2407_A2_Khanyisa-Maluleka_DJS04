@@ -24,7 +24,7 @@ class BookPreview extends HTMLElement {
             const event = new CustomEvent('book-selected', {
                 bubbles: true,
                 composed: true,
-                detail: { bookId: this.getAttribute('book-id') }
+                detail: { bookId: this.getAttribute('bookid') }
             });
             this.dispatchEvent(event);
         });
@@ -33,3 +33,15 @@ class BookPreview extends HTMLElement {
 
 // Register the web component
 customElements.define('book-preview', BookPreview);
+
+class BookApp {
+    renderBookPreview(book) { //create an instance of <book-preview> and set its attributes
+        const element = document.createElement('book-preview');
+        element.setAttribute('book-id', book.id);
+        element.setAttribute('title', book.title);
+        element.setAttribute('author', this.authors[book.author]);
+        element.setAttribute('image', book.image);
+        return element;
+    }
+
+}
