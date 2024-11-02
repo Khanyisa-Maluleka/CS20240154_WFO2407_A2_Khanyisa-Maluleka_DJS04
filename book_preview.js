@@ -1,0 +1,2 @@
+class BookPreview extends HTMLElement {
+}
