@@ -1,4 +1,5 @@
 import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'
+import './BookPreview.js';
 
 // Book Application Class 
 class BookApp {
@@ -15,7 +16,7 @@ class BookApp {
         //a function that calls all my other functions
         this.init();
     }
-
+  
     init() {
         this.initialBookList();
         this.setupSearchForms();
