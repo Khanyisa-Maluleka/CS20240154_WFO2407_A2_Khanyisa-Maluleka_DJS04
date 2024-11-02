@@ -24,31 +24,12 @@ class BookApp {
         this.updateShowMoreButton();
     }
 
-    // Book rendering methods
-    bookPreview(book) { //Creates a button element for each book preview
-        const element = document.createElement('button');
-        element.classList = 'preview';
-        element.setAttribute('data-preview', book.id);
-        
-        element.innerHTML = `
-            <img
-                class="preview__image"
-                src="${book.image}"
-            />
-            <div class="preview__info">
-                <h3 class="preview__title">${book.title}</h3>
-                <div class="preview__author">${this.authors[book.author]}</div>
-            </div>
-        `;
-        return element;
-    }
-
     initialBookList() { // to determine how many books to show
         const fragment = document.createDocumentFragment();
         const initialBooks = this.matches.slice(0, this.BOOKS_PER_PAGE);
         
         for (const book of initialBooks) {
-            fragment.appendChild(this.bookPreview(book));
+            fragment.appendChild(this.renderBookPreview(book));
         }
         
         document.querySelector('[data-list-items]').appendChild(fragment);
@@ -131,7 +112,7 @@ class BookApp {
         const newItems = document.createDocumentFragment();
 
         for (const book of result.slice(0, this.BOOKS_PER_PAGE)) {
-            newItems.appendChild(this.bookPreview(book));
+            newItems.appendChild(this.renderBookPreview(book));
         }
 
         document.querySelector('[data-list-items]').appendChild(newItems);
@@ -232,7 +213,7 @@ class BookApp {
         const end = (this.currentPage + 1) * this.BOOKS_PER_PAGE;
         
         for (const book of this.matches.slice(start, end)) {
-            fragment.appendChild(this.bookPreview(book));
+            fragment.appendChild(this.renderBookPreview(book));
         }
         
         document.querySelector('[data-list-items]').appendChild(fragment);
