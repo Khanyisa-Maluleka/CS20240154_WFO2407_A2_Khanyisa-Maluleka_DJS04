@@ -1,4 +1,3 @@
-// BookPreview.js
 class BookPreview extends HTMLElement {
     constructor() {
         super();

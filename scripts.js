@@ -233,5 +233,5 @@ class BookApp {
     }
 }
 
-// Initialize the application
+// Initializing the application
 const app = new BookApp(books, authors, genres, BOOKS_PER_PAGE);
