@@ -1,5 +1,5 @@
-import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'
 import './BookPreview.js';
+import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'
 
 // Book Application Class 
 class BookApp {
@@ -16,7 +16,7 @@ class BookApp {
         //a function that calls all my other functions
         this.init();
     }
-  
+
     init() {
         this.initialBookList();
         this.setupSearchForms();
@@ -25,12 +25,22 @@ class BookApp {
         this.updateShowMoreButton();
     }
 
+    // Book rendering methods
+    bookPreview(book) {
+        const element = document.createElement('book-preview');
+        element.dataset.title = book.title;
+        element.dataset.authorName = this.authors[book.author];
+        element.dataset.image = book.image;
+        element.dataset.preview = book.id;
+        return element;
+    }    
+
     initialBookList() { // to determine how many books to show
         const fragment = document.createDocumentFragment();
         const initialBooks = this.matches.slice(0, this.BOOKS_PER_PAGE);
         
         for (const book of initialBooks) {
-            fragment.appendChild(this.renderBookPreview(book));
+            fragment.appendChild(this.bookPreview(book));
         }
         
         document.querySelector('[data-list-items]').appendChild(fragment);
@@ -113,7 +123,7 @@ class BookApp {
         const newItems = document.createDocumentFragment();
 
         for (const book of result.slice(0, this.BOOKS_PER_PAGE)) {
-            newItems.appendChild(this.renderBookPreview(book));
+            newItems.appendChild(this.bookPreview(book));
         }
 
         document.querySelector('[data-list-items]').appendChild(newItems);
@@ -214,7 +224,7 @@ class BookApp {
         const end = (this.currentPage + 1) * this.BOOKS_PER_PAGE;
         
         for (const book of this.matches.slice(start, end)) {
-            fragment.appendChild(this.renderBookPreview(book));
+            fragment.appendChild(this.bookPreview(book));
         }
         
         document.querySelector('[data-list-items]').appendChild(fragment);
